@@ -1,10 +1,13 @@
 import usersRouter from "./routes/users.js";
 import express, { json } from "express";
+import db from "./database.js";
 
 const app = express();
 const port = 3000;
 
 console.log("test");
+
+
 
 // MIDDLEWARE
 app.use(express.json());
