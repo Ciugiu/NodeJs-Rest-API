@@ -1,37 +1,16 @@
+import db from '../database.js';
 import { Router } from 'express';
 const router = Router();
 
-const users = [
-	{
-	"ID": 1,
-	"firstName": "John",
-	"lastName": "Doe"
-	},
-	{
-	"ID": 2,
-	"firstName": "Jane",
-	"lastName": "Smith"
-	},
-	{
-	"ID": 3,
-	"firstName": "Michael",
-	"lastName": "Johnson"
-	},
-	{
-	"ID": 4,
-	"firstName": "Emily",
-	"lastName": "Davis"
-	},
-	{
-	"ID": 5,
-	"firstName": "Chris",
-	"lastName": "Brown"
-	}
-]
-
 // GET METHOD
 router.get('/users', (req, res) => {
-  res.json({ users });
+  db.all('SELECT * FROM users', [], (err, rows) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.json(rows);
+    }
+  });
 });
 
 // POST METHOD
