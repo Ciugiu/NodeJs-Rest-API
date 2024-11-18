@@ -1,15 +1,15 @@
 import usersRouter from "./routes/users.js";
 import express, { json } from "express";
 import db from "./database.js";
+import cors from "cors";
 
 const app = express();
 const port = 3000;
 
 console.log("test");
 
-
-
 // MIDDLEWARE
+app.use(cors());
 app.use(express.json());
 // users endpoint
 app.use("/api/", usersRouter);
